@@ -11,47 +11,21 @@ namespace GraduationTracker
         public static Student GetStudent(int id)
         {
             var students = GetStudents();
-            Student student = null;
-
-            for (int i = 0; i < students.Length; i++)
-            {
-                if (id == students[i].Id)
-                {
-                    student = students[i];
-                }
-            }
-            return student;
+             return  (Student)students.Where(i => i.Id == id);
+          
         }
 
         public static Diploma GetDiploma(int id)
         {
             var diplomas = GetDiplomas();
-            Diploma diploma = null;
-
-            for (int i = 0; i < diplomas.Length; i++)
-            {
-                if (id == diplomas[i].Id)
-                {
-                    diploma = diplomas[i];
-                }
-            }
-            return diploma;
+          return (Diploma) diplomas.Where(i => i.Id == id);
 
         }
 
-        public static Requirement GetRequirement(int id)
+        public static List<Requirement>  GetRequirement(int id)
         {
             var requirements = GetRequirements();
-            Requirement requirement = null;
-
-            for (int i = 0; i < requirements.Length; i++)
-            {
-                if (id == requirements[i].Id)
-                {
-                    requirement = requirements[i];
-                }
-            }
-            return requirement;
+           return  requirements.Where(i => i.Id == id).ToList<Requirement>();
         }
 
 
