@@ -78,8 +78,8 @@ namespace GraduationTracker.Tests.Unit
                 graduated.Add(tracker.HasGraduated(diploma, student));      
             }
 
-            
-            Assert.IsFalse(graduated.Any());
+              CollectionAssert.AllItemsAreNotNull(graduated);
+           
 
         }
 
