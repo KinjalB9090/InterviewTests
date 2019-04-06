@@ -13,23 +13,30 @@ namespace GraduationTracker
             var credits = 0;
             var average = 0;
         
-            for(int i = 0; i < diploma.Requirements.Length; i++)
-            {
-                for(int j = 0; j < student.Courses.Length; j++)
-                {
-                    var requirement = Repository.GetRequirement(diploma.Requirements[i]);
+             var requirement =new  List<Requirement>();
 
-                    for (int k = 0; k < requirement.Courses.Length; k++)
+            for (int i = 0; i < diploma.Requirements.Length; i++)
+            {
+                 requirement = Repository.GetRequirement(diploma.Requirements[i]);
+                for (int j = 0; j < student.Courses.Length; j++)
+                {              
+
+                    foreach (var item in requirement)
                     {
-                        if (requirement.Courses[k] == student.Courses[j].Id)
+                        for (int k = 0; k < item.Courses.Length; k++)
                         {
-                            average += student.Courses[j].Mark;
-                            if (student.Courses[j].Mark > requirement.MinimumMark)
+                            if (item.Courses[k] == student.Courses[j].Id)
                             {
-                                credits += requirement.Credits;
+                                average += student.Courses[j].Mark;
+                                if (student.Courses[j].Mark > item.MinimumMark)
+                                {
+                                    credits += item.Credits;
+                                }
                             }
                         }
+                           
                     }
+                   
                 }
             }
 
